@@ -8,7 +8,7 @@ import axios from 'axios';
 export default function OfficeForm(props) {
 	const dispatch = useDispatch();
 	const [ form, setForm ] = useState({});
-
+	console.log(form);
 	const updateField = (e) => {
 		setForm({
 			...form,
@@ -22,7 +22,8 @@ export default function OfficeForm(props) {
 		try {
 			const inputs = {
 				...form,
-				company: form.company ? form.company : props.companies[0]._id
+				company: form.company ? form.company : props.companies[0]._id,
+				startDate: form.startDate ? form.startDate : new Date().toISOString().split('T')[0]
 			};
 
 			await axios.post('http://localhost:3000/offices', inputs);
@@ -44,6 +45,7 @@ export default function OfficeForm(props) {
 					<input
 						type="text"
 						name="latitude"
+						value={form.latitude ? form.latitude : ''}
 						placeholder="latitude"
 						className="px-1 w-1/2 mr-1 border border-gray-500"
 						onChange={updateField}
@@ -52,6 +54,7 @@ export default function OfficeForm(props) {
 					<input
 						type="text"
 						name="longitude"
+						value={form.longitude ? form.longitude : ''}
 						placeholder="longitude"
 						className="px-1 w-1/2 ml-1 border border-gray-500"
 						onChange={updateField}
@@ -66,6 +69,8 @@ export default function OfficeForm(props) {
 				<input
 					type="date"
 					onChange={updateField}
+					value={form.updateField ? form.updateField : new Date().toISOString().split('T')[0]}
+					name="startDate"
 					className="bg-gray-100 border border-gray-500 px-1 rounded"
 					required
 				/>

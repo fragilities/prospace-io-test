@@ -12,7 +12,6 @@ export default function CompanyCard(props) {
 
 	const handleDelete = async () => {
 		try {
-			console.log('deleting');
 			await axios.delete(`http://localhost:3000/companies/${props.company._id}`);
 			const { data } = await axios.get('http://localhost:3000/companies');
 			dispatch(setCompanies(data.companies));

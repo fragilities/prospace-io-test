@@ -19,7 +19,14 @@ const companySchema = new Schema({
 	phone: {
 		type: String,
 		required: [ true, 'Must insert phone number' ]
-	}
+	},
+
+	offices: [
+		{
+			type: Schema.Types.ObjectId,
+			ref: 'Office'
+		}
+	]
 });
 
 companySchema.plugin(timestamp);

@@ -4,29 +4,33 @@ const Schema = mongoose.Schema;
 const models = mongoose.models;
 
 const officeSchema = new Schema({
-    name: {
-        type: String,
-        required: [true, 'Must insert office name']
-    },
-    location: {
-        type: String,
-        required: [true, 'Must insert office location']
-    },
-    startDate: {
-        type: Date,
-        required: [true, 'Must insert office start date']
-    },
-    company: {
-        type: mongoose.Types.ObjectId,
-        ref: 'Company',
-        required: [true, 'Must specify the company'],
-        validate: {
-            validator: v => {
-                return models.Company.findById(v);
-            },
-            message: props => 'Company with such id does not exist'
-        }
-    }
+	name: {
+		type: String,
+		required: [ true, 'Must insert office name' ]
+	},
+	longitude: {
+		type: String,
+		required: [ true, 'Must insert longitude' ]
+	},
+	latitude: {
+		type: String,
+		required: [ true, 'Must insert latitude' ]
+	},
+	startDate: {
+		type: Date,
+		required: [ true, 'Must insert office start date' ]
+	},
+	company: {
+		type: mongoose.Types.ObjectId,
+		ref: 'Company',
+		required: [ true, 'Must specify the company' ],
+		validate: {
+			validator: (v) => {
+				return models.Company.findById(v);
+			},
+			message: (props) => 'Company with such id does not exist'
+		}
+	}
 });
 
 officeSchema.plugin(timestamp);

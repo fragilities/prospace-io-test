@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Overview from './containers/Overview.jsx';
+import Company from './containers/Company.jsx';
 
 function App() {
 	return (
@@ -12,7 +13,7 @@ function App() {
 						<Overview />
 					</Route>
 					<Route path="/company/:id">
-						<p>this is company</p>
+						<Company />
 					</Route>
 					<Route path="/">
 						<Redirect to="/overview" />
